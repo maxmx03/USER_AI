@@ -60,7 +60,7 @@ function M.checkIsAttackingOwner(bb)
     return STATUS.SUCCESS
   end
   for pos, enemy in ipairs(bb.myEnemies) do
-    if IsEnemyAlive(bb.myId, bb.myEnemy) then
+    if IsEnemyAlive(bb.myId, enemy) then
       if GetV(V_TARGET, enemy) == bb.myOwner then
         bb.ownerBeingTarget = true
         bb.myEnemy = table.remove(bb.myEnemies, pos)

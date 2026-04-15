@@ -46,7 +46,7 @@ function M.hasEnemyGroup(minEnemies, maxDistance)
     local myEnemyX, myEnemyY = GetV(V_POSITION, bb.myEnemy)
     local sumX, sumY = myEnemyX, myEnemyY
     for _, enemy in ipairs(bb.myEnemies) do
-      if enemy ~= bb.myEnemy and IsEnemyAlive(bb.myId, bb.myEnemy) then
+      if enemy ~= bb.myEnemy and IsEnemyAlive(bb.myId, enemy) then
         local enemyX, enemyY = GetV(V_POSITION, enemy)
         if enemyX ~= -1 then
           local distance = GetDistance(myEnemyX, myEnemyY, enemyX, enemyY)

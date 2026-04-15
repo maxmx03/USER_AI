@@ -156,7 +156,7 @@ function M.executePatrol(bb)
   bb.patrolX, bb.patrolY = GetV(V_POSITION, bb.myId)
   bb.destX = CommandData.destX
   bb.destY = CommandData.destY
-  if bb.destX ~= bb.patrolX and bb.patrolY ~= bb.destY then
+  if bb.destX ~= bb.patrolX or bb.patrolY ~= bb.destY then
     Move(bb.myId, bb.destX, bb.destY)
     return STATUS.RUNNING
   end
@@ -243,7 +243,7 @@ end
 
 function M.executeSkillGround(bb)
   local x, y = GetV(V_POSITION, bb.myId)
-  if x ~= CommandData.destX and y ~= CommandData.destY then
+  if x ~= CommandData.destX or y ~= CommandData.destY then
     if 0 == SkillGround(bb.myId, CommandData.skillLevel, CommandData.skillId, CommandData.destX, CommandData.destY) then
       List.pushleft(ResCmdList, NoCommand)
       return STATUS.FAILURE
