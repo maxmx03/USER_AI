@@ -5,6 +5,7 @@
 ---@field patrol Node
 ---@field attackAndChase Node
 ---@field follow Node
+---@field followAhead Node
 ---@field checkHomunStuck Node
 ---@field lastTimePatrol number
 ---@field isAmistr Condition
@@ -84,6 +85,28 @@ function M.follow(bb)
     return STATUS.RUNNING
   end
   return STATUS.SUCCESS
+end
+
+function M.followAhead(bb)
+  local ownerX, ownerY = GetV(V_POSITION, bb.myOwner)
+  if ownerX == -1 then
+    return STATUS.RUNNING
+  end
+
+  local dx = ownerX - bb.ownerLastX
+  local dy = ownerY - bb.ownerLastY
+  local len = math.sqrt(dx * dx + dy * dy)
+
+  if len > 0 and len <= 15 then
+    local aheadDist = bb.userConfig.followDistance
+    local targetX = math.floor(ownerX + (dx / len) * aheadDist)
+    local targetY = math.floor(ownerY + (dy / len) * aheadDist)
+    Move(bb.myId, targetX, targetY)
+  else
+    MoveToOwner(bb.myId)
+  end
+
+  return STATUS.RUNNING
 end
 
 function M.checkHomunStuck(bb)

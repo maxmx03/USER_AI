@@ -1,5 +1,6 @@
 ---@class OwnerNode
 ---@field isMoving Condition
+---@field isOwnerMoving Condition
 ---@field isNotMoving Condition
 ---@field isNotTooFar Condition
 ---@field isMovingAway Condition
@@ -16,6 +17,10 @@ function M.isMoving(bb)
     return true
   end
   return false
+end
+
+function M.isOwnerMoving(bb)
+  return GetV(V_MOTION, bb.myOwner) == MOTION_MOVE
 end
 
 function M.isNotMoving(bb)
