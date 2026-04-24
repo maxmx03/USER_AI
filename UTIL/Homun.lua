@@ -31,7 +31,15 @@ local function root(combat)
     Unless(
       Selector {
         Unless(fightEnemy, ownerNodes.isMovingAway),
-        Condition(homunNodes.follow, ownerNodes.isMoving),
+        Condition(
+          function(bb)
+            if bb.userConfig.followAhead then
+              return homunNodes.followAhead(bb)
+            end
+            return homunNodes.follow(bb)
+          end,
+          ownerNodes.isOwnerMoving
+        ),
         Unless(
           Selector {
             patrolWhenOwnerIsSitting,

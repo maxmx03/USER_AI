@@ -43,6 +43,8 @@ local blackboard = {
   },
   eleanorSpBeforeCast = 0,
   eleanorTriedCastSkill = false,
+  ownerLastX = 0,
+  ownerLastY = 0,
   ---@type UserConfig
   userConfig = require 'AI.USER_AI.config',
   myCooldowns = {
@@ -798,4 +800,6 @@ function YggAI(myid)
     end
   end
   tree()
+  blackboard.ownerLastX = ownerX
+  blackboard.ownerLastY = ownerY
 end

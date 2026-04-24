@@ -2,6 +2,7 @@
 local myConfig = {
   homunLevel = 175,
   lifUseHeal = false,
+  followAhead = true,
   maxEnemiesToSearch = 15,
   followDistance = 3,
   patrolDistance = 7,
